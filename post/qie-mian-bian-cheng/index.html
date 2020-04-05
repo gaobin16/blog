@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | 遗落空间</title>
+<title>切面编程 | 遗落空间</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,10 +18,10 @@
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！
+    <meta name="description" content="拦截器
 
-" />
+public class Myinterceptor implements HandlerInterceptor {
+    private Logger logger = LoggerFactory.getLogger(Myin..." />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -93,16 +93,63 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
+            <h2 class="post-title">切面编程</h2>
+            <div class="post-date">2020-04-05</div>
             
             <div class="post-content" v-pre>
-              <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！</p>
-</blockquote>
+              <h3 id="拦截器">拦截器</h3>
+<pre><code>
+public class Myinterceptor implements HandlerInterceptor {
+    private Logger logger = LoggerFactory.getLogger(Myinterceptor.class);
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        this.logger.info(&quot;** Myinterceptor.preHandle  ** &quot; + handlerMethod.getBean().getClass().getSimpleName());
+        return true; // 如果返回false表示不继续请求，如果是true表示继续请求
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+                           ModelAndView modelAndView) throws Exception {
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        this.logger.info(&quot;** Myinterceptor.postHandle  ** &quot; + handlerMethod.getBean().getClass().getSimpleName());
+        this.logger.info(&quot;** Myinterceptor.postHandle  ** &quot; + modelAndView);
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+            throws Exception {
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        this.logger.info(&quot;** Myinterceptor.afterCompletion  ** 拦截处理完毕&quot;);
+    }
+}
+
+</code></pre>
+<h3 id="如果此时想用拦截器就必须有个拦截器的配置类">如果此时想用拦截器，就必须有个拦截器的配置类</h3>
+<pre><code>@Configuration
+public class MyWebApplicationConfig extends WebMvcConfigurerAdapter { //定义MVC配置
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) { // l拦截器注册
+        registry.addInterceptor(new Myinterceptor()).addPathPatterns(&quot;/**&quot;); // 匹配路径
+        super.addInterceptors(registry);
+    }
+}
+
+</code></pre>
 
             </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://gaobin16.github.io/post/javascriptArrayMethods/">
+                  <h3 class="post-title">
+                    数组的方法
+                  </h3>
+                </a>
+              </div>
             
 
             

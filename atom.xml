@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://gaobin16.github.io</id>
     <title>遗落空间</title>
-    <updated>2020-03-28T07:20:24.347Z</updated>
+    <updated>2020-04-05T08:57:33.775Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://gaobin16.github.io"/>
     <link rel="self" href="https://gaobin16.github.io/atom.xml"/>
@@ -10,6 +10,55 @@
     <logo>https://gaobin16.github.io/images/avatar.png</logo>
     <icon>https://gaobin16.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 遗落空间</rights>
+    <entry>
+        <title type="html"><![CDATA[切面编程]]></title>
+        <id>https://gaobin16.github.io/post/qie-mian-bian-cheng/</id>
+        <link href="https://gaobin16.github.io/post/qie-mian-bian-cheng/">
+        </link>
+        <updated>2020-04-05T07:43:40.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="拦截器">拦截器</h3>
+<pre><code>
+public class Myinterceptor implements HandlerInterceptor {
+    private Logger logger = LoggerFactory.getLogger(Myinterceptor.class);
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        this.logger.info(&quot;** Myinterceptor.preHandle  ** &quot; + handlerMethod.getBean().getClass().getSimpleName());
+        return true; // 如果返回false表示不继续请求，如果是true表示继续请求
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+                           ModelAndView modelAndView) throws Exception {
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        this.logger.info(&quot;** Myinterceptor.postHandle  ** &quot; + handlerMethod.getBean().getClass().getSimpleName());
+        this.logger.info(&quot;** Myinterceptor.postHandle  ** &quot; + modelAndView);
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+            throws Exception {
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        this.logger.info(&quot;** Myinterceptor.afterCompletion  ** 拦截处理完毕&quot;);
+    }
+}
+
+</code></pre>
+<h3 id="如果此时想用拦截器就必须有个拦截器的配置类">如果此时想用拦截器，就必须有个拦截器的配置类</h3>
+<pre><code>@Configuration
+public class MyWebApplicationConfig extends WebMvcConfigurerAdapter { //定义MVC配置
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) { // l拦截器注册
+        registry.addInterceptor(new Myinterceptor()).addPathPatterns(&quot;/**&quot;); // 匹配路径
+        super.addInterceptors(registry);
+    }
+}
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[数组的方法]]></title>
         <id>https://gaobin16.github.io/post/javascriptArrayMethods/</id>
