@@ -1,7 +1,9 @@
-.DS_Store
+.DS_Store/
 Thumbs.db
 db.json
 *.log
 node_modules/
 public/
 .deploy*/
+butterfly.yml
+themes/Butterfly/_config.yml

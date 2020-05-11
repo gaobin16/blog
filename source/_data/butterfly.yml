@@ -241,12 +241,8 @@ laibili:
   uid:
 
 gitalk:
-  enable: false
-  client_id:
-  client_secret:
-  repo:
-  owner:
-  admin:
+  enable: true
+
   language: zh-CN # en , zh-CN , zh-TW
   perPage: 10 # Pagination size, with maximum 100.
   distractionFreeMode: false # Facebook-like distraction free mode.
@@ -356,7 +352,7 @@ qihu_site_verification:
 
 # 打賞按鈕
 reward:
-  enable: true
+  enable: false
   QR_code:
     - itemlist:
         img: /img/wechat.jpg

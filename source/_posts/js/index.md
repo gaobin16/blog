@@ -27,6 +27,6 @@ node -v
 
 进入官网 [node](https://nodejs.org/zh-cn/download/)选择相应的系统下载即可
 
-![GitHub Logo](/images/node_down.png)
+![GitHub Logo](/public/images/node_down.png)
 
 安装只需按照步骤进行即可，检查是否安装成功可按第一步重新走一遍即可
