@@ -6,5 +6,5 @@ node_modules/
 public/
 .deploy*/
 source/_data/butterfly.yml
-themes/
+themes/Butterfly/_config.yml
 public.zip
