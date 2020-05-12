@@ -241,8 +241,12 @@ laibili:
   uid:
 
 gitalk:
-  enable: true
-
+  enable: false
+  client_id:
+  client_secret:
+  repo:
+  owner:
+  admin:
   language: zh-CN # en , zh-CN , zh-TW
   perPage: 10 # Pagination size, with maximum 100.
   distractionFreeMode: false # Facebook-like distraction free mode.
@@ -315,7 +319,7 @@ baidu_analytics:
 google_analytics:
 
 # Tencent_analytics ID
-tencent_analytics: 66554687
+tencent_analytics:
 
 # Ads
 # ---------------
@@ -572,7 +576,7 @@ busuanzi:
 # 也可以寫成 年/月/日 時間
 runtimeshow:
   enable: true
-  start_date: 10/5/2020 00:00:00
+  start_date: 5/10/2020 00:00:00
 
 ####   右下角按鈕  ####
 #----------------------------------------------
